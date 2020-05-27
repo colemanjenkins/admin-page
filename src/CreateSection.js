@@ -76,8 +76,9 @@ class CreateSection extends Component {
 
     render() {
         return (
-            <div>
-                <label> Choose What to Add <br />
+            <div style={{ margin: "15px" }}>
+                <h3>Create New</h3>
+                <label> Type <br />
                     <select value={this.state.objType}
                         onChange={this.handleSelect}>
                         <option value="none">--</option>

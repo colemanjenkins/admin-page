@@ -66,22 +66,30 @@ class App extends Component {
       //     students: newStudents
       //   }
       // });
-    } else if (data.objType === "student") { //teacher
-
-    } else if (data.objType === "student") { //admin
-
-    } else if (data.objType === "student") { //class
-
-    } else {
-
+    } else if (data.objType === "teacher") { //teacher
+      const teacherRef = rootRef.child("teachers");
+      teacherRef.push().set({
+        name: data.name,
+        address: data.address,
+        homeroom: data.homeroom,
+        birthday: data.birthday,
+      })
+    } else if (data.objType === "admin") { //admin
+      const adminRef = rootRef.child("admin");
+      adminRef.push().set({
+        name: data.name,
+      })
+    } else if (data.objType === "class") { //class
+      const classRef = rootRef.child("classes");
+      classRef.push().set({
+        name: data.name,
+      })
     }
   }
 
   render() {
     return (
       <div className="App">
-        <h1>{this.state.value}</h1>
-        <button>Add one</button>
         <div className="contents">
           <ListDisplay obj={this.state.students} title="Students" />
           <ListDisplay obj={this.state.teachers} title="Teachers" />
