@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
+// import { Formik } from 'formik';
+// import * as yup from 'yup';
+// import Form from 'react-bootstrap/Form';
+
+import './CreateSection.css'
+
 
 class CreateSection extends Component {
 
@@ -13,6 +20,59 @@ class CreateSection extends Component {
             teacher: "",
             enrolled: ""
         }
+    }
+
+    updateData = (data) => {
+        console.log(data);
+
+        const rootRef = firebase.database().ref();
+
+        if (data.objType === "student") { //student
+            const studentRef = rootRef.child("students");
+            studentRef.push().set({
+                name: data.name,
+                address: data.address,
+                homeroom: data.homeroom,
+                birthday: data.birthday,
+                teacher: data.teacher,
+                enrolled: data.enrolled === "yes" ? true : false
+            })
+        } else if (data.objType === "teacher") { //teacher
+            const teacherRef = rootRef.child("teachers");
+            teacherRef.push().set({
+                name: data.name,
+                address: data.address,
+                homeroom: data.homeroom,
+                birthday: data.birthday,
+            })
+        } else if (data.objType === "admin") { //admin
+            const adminRef = rootRef.child("admin");
+            adminRef.push().set({
+                name: data.name,
+            })
+        } else if (data.objType === "class") { //class
+            const classRef = rootRef.child("classes");
+            classRef.push().set({
+                name: data.name,
+            })
+        }
+    }
+
+    handleSubmit = (event) => {
+        const st = this.state;
+
+        this.setState(prevState => {
+            return {
+                objType: prevState.objType,
+                name: "",
+                address: "",
+                homeroom: "",
+                birthday: "",
+                teacher: "",
+                enrolled: ""
+            }
+        });
+        this.updateData(st);
     }
 
     handleSelect = (event) => {
@@ -57,26 +117,13 @@ class CreateSection extends Component {
         })
     }
 
-    handleSubmit = (event) => {
-        const st = this.state;
-
-        this.setState(prevState => {
-            return {
-                objType: prevState.objType,
-                name: "",
-                address: "",
-                homeroom: "",
-                birthday: "",
-                teacher: "",
-                enrolled: ""
-            }
-        });
-        this.props.create(st);
-    }
-
     render() {
+        const {
+            homerooms,
+            teachers
+        } = this.props;
         return (
-            <div style={{ margin: "15px" }}>
+            <div style={{ margin: "15px", width: "250px" }}>
                 <h3>Create New</h3>
                 <label> Type <br />
                     <select value={this.state.objType}
@@ -100,11 +147,27 @@ class CreateSection extends Component {
                 {(this.state.objType === "student" || this.state.objType === "teacher")
                     && <label>
                         <br />Homeroom Class
-                    <input value={this.state.homeroom} onChange={this.handleHomeroomChange} />
+                        <select value={this.state.homeroom} onChange={this.handleHomeroomChange}>
+                            <option value=""> -- </option>
+                            {(homerooms !== null && homerooms !== undefined) &&
+                                Object.values(homerooms).map(homeroom => {
+                                    return (
+                                        <option value={homeroom.name}>{homeroom.name}</option>
+                                    );
+                                })}
+                        </select>
                     </label>}
                 {this.state.objType === "student" && <label>
                     <br />Teacher
-                    <input value={this.state.teacher} onChange={this.handleTeacherChange} />
+                    <select value={this.state.teacher} onChange={this.handleTeacherChange}>
+                        <option value=""> -- </option>
+                        {(teachers !== null && teachers !== undefined) &&
+                            Object.values(teachers).map(teacher => {
+                                return (
+                                    <option value={teacher.name}>{teacher.name}</option>
+                                );
+                            })}
+                    </select>
                 </label>}
                 {this.state.objType === "student" && <label>
                     <br />Enrolled?
@@ -122,25 +185,11 @@ class CreateSection extends Component {
                 {this.state.objType !== "none" && <label>
                     <button onClick={this.handleSubmit}>Submit</button>
                 </label>}
+
             </div>
+
         );
     }
 }
-
-// function StudentOptions(props) {
-//     return <div></div>
-// }
-
-// function TeacherOptions(props) {
-//     return <div></div>
-// }
-
-// function ClassOptions(props) {
-//     return <div></div>
-// }
-
-// function AdminOptions(props) {
-//     return <div></div>
-// }
 
 export default CreateSection;

@@ -1,22 +1,58 @@
 import React, { Component } from 'react';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 class ListDisplay extends Component {
     render() {
+        const {
+            obj,
+            title
+        } = this.props;
         let contents;
-        if (this.props.obj !== undefined && this.props.obj !== null) {
-            contents =
-                Object.values(this.props.obj).length !== 0 && Object.values(this.props.obj).map(object => {
-                    return (
-                        <li>{object.name}</li>
-                    );
-                })
+        let ct = -1;
+        let keys;
+        if (obj !== undefined && obj !== null) {
+            keys = Object.keys(obj);
+            contents = Object.values(obj).length !== 0 && Object.values(obj).map(object => {
+                ct++;
+                const childrenValues = Object.values(object);
+                const childrenKeys = Object.keys(object);
+                let localCt = -1;
+                return (
+                    <Card key={keys[ct]}>
+                        <Card.Header>
+                            <Accordion.Toggle
+                                as={Button}
+                                variant="link" eventKey={ct + ""}>
+                                {object.name}
+                            </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey={ct + ""}>
+                            <Card.Body>
+                                {childrenValues.map(property => {
+                                    localCt++;
+                                    let display = property;
+                                    if (property === true || property === false)
+                                        display = property ? "yes" : "no";
+                                    return (
+                                        <div style={{ textAlign: "left" }}><b>{childrenKeys[localCt]}</b>: {display}</div>
+                                    )
+                                })}
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                );
+            });
         } else {
-            contents = "None yet!"
+            contents = "None yet!";
         }
         return (
             <div style={{ margin: "15px" }}>
-                <h3>{this.props.title}</h3>
-                {contents}
+                <h3>{title}</h3>
+                <Accordion style={{ maxHeight: "500px", overflow: "scroll", width: "280px" }}>
+                    {contents}
+                </Accordion>
             </div>
         );
     }

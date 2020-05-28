@@ -32,5 +32,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "formik": "^2.1.4",
+    "react-bootstrap": "^1.0.1",
+    "yup": "^0.29.1"
   }
 }
