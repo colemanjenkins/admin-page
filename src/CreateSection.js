@@ -122,6 +122,10 @@ class CreateSection extends Component {
             homerooms,
             teachers
         } = this.props;
+        const homeroomKeys = Object.keys(homerooms);
+        const teacherKeys = Object.keys(teachers);
+        let homeroomCount = -1;
+        let teacherCount = -1;
         return (
             <div style={{ margin: "15px", width: "250px" }}>
                 <h3>Create New</h3>
@@ -151,8 +155,9 @@ class CreateSection extends Component {
                             <option value=""> -- </option>
                             {(homerooms !== null && homerooms !== undefined) &&
                                 Object.values(homerooms).map(homeroom => {
+                                    homeroomCount++;
                                     return (
-                                        <option value={homeroom.name}>{homeroom.name}</option>
+                                        <option value={homeroomKeys[homeroomCount]}>{homeroom.name}</option>
                                     );
                                 })}
                         </select>
@@ -163,8 +168,9 @@ class CreateSection extends Component {
                         <option value=""> -- </option>
                         {(teachers !== null && teachers !== undefined) &&
                             Object.values(teachers).map(teacher => {
+                                teacherCount++;
                                 return (
-                                    <option value={teacher.name}>{teacher.name}</option>
+                                    <option value={teacherKeys[teacherCount]}>{teacher.name}</option>
                                 );
                             })}
                     </select>

@@ -7,7 +7,9 @@ class ListDisplay extends Component {
     render() {
         const {
             obj,
-            title
+            title,
+            homerooms,
+            teachers
         } = this.props;
         let contents;
         let ct = -1;
@@ -33,10 +35,18 @@ class ListDisplay extends Component {
                                 {childrenValues.map(property => {
                                     localCt++;
                                     let display = property;
-                                    if (property === true || property === false)
+                                    if (property === true || property === false) {
                                         display = property ? "yes" : "no";
+                                    } else if (childrenKeys[localCt] === "homeroom" && homerooms !== null && homerooms !== undefined) {
+                                        // console.log(homerooms);
+                                        display = homerooms[property].name;
+                                    }
+                                    else if (childrenKeys[localCt] === "teacher" && teachers !== null && teachers !== undefined) {
+                                        // console.log(teachers);
+                                        display = teachers[property].name;
+                                    }
                                     return (
-                                        <div style={{ textAlign: "left" }}><b>{childrenKeys[localCt]}</b>: {display}</div>
+                                        <div style={{ textAlign: "left" }}><b>{childrenKeys[localCt].charAt(0).toUpperCase() + childrenKeys[localCt].slice(1)}</b>: {display}</div>
                                     )
                                 })}
                             </Card.Body>

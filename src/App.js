@@ -36,8 +36,10 @@ class App extends Component {
       <div className="App">
         <h1>Thomas Jefferson Elementary School</h1>
         <div className="contents">
-          <ListDisplay obj={this.state.students} title="Students" />
-          <ListDisplay obj={this.state.teachers} title="Teachers" />
+          <ListDisplay obj={this.state.students} title="Students"
+            homerooms={this.state.classes} teachers={this.state.teachers} />
+          <ListDisplay obj={this.state.teachers} title="Teachers"
+            homerooms={this.state.homerooms} />
           <ListDisplay obj={this.state.admin} title="Admin" />
           <CreateSection homerooms={this.state.classes}
             teachers={this.state.teachers} />
