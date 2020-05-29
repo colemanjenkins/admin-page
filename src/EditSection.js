@@ -220,56 +220,70 @@ class EditSection extends Component {
                 </Form.Group>
             </Form>
             <div style={{ margin: "15px" }}>
-                {this.state.objType !== "none" && <label>
-                    <br /> Name
+                <div>
+                    {this.state.objType !== "none" && <label>
+                        <br /> Name
                     <input value={this.state.selection.name} onChange={this.handleNameChange} />
-                </label>}
-                {(this.state.objType === "student" || this.state.objType === "teacher")
-                    && <label>
-                        <br /> Address
-                    <input value={this.state.selection.address} onChange={this.handleAddressChange} />
                     </label>}
-                {(this.state.objType === "student" || this.state.objType === "teacher")
-                    && <label>
-                        <br />Homeroom Class
+                </div>
+                <div>
+                    {(this.state.objType === "student" || this.state.objType === "teacher")
+                        && <label>
+                            <br /> Address
+                    <input value={this.state.selection.address} onChange={this.handleAddressChange} />
+                        </label>}
+                </div>
+                <div>
+                    {(this.state.objType === "student" || this.state.objType === "teacher")
+                        && <label>
+                            <br />Homeroom Class
                         <select value={this.state.selection.homeroom} onChange={this.handleHomeroomChange}>
+                                <option value=""> -- </option>
+                                {(this.state.classes !== null && this.state.classes !== undefined) &&
+                                    Object.values(this.state.classes).map(homeroom => {
+                                        return (
+                                            <option value={homeroom.name}>{homeroom.name}</option>
+                                        );
+                                    })}
+                            </select>
+                        </label>}
+                </div>
+                <div>
+                    {this.state.objType === "student" && <label>
+                        <br />Teacher
+                    <select value={this.state.selection.teacher} onChange={this.handleTeacherChange}>
                             <option value=""> -- </option>
-                            {(this.state.classes !== null && this.state.classes !== undefined) &&
-                                Object.values(this.state.classes).map(homeroom => {
+                            {(this.state.teachers !== null && this.state.teachers !== undefined) &&
+                                Object.values(this.state.teachers).map(teacher => {
                                     return (
-                                        <option value={homeroom.name}>{homeroom.name}</option>
+                                        <option value={teacher.name}>{teacher.name}</option>
                                     );
                                 })}
                         </select>
                     </label>}
-                {this.state.objType === "student" && <label>
-                    <br />Teacher
-                    <select value={this.state.selection.teacher} onChange={this.handleTeacherChange}>
-                        <option value=""> -- </option>
-                        {(this.state.teachers !== null && this.state.teachers !== undefined) &&
-                            Object.values(this.state.teachers).map(teacher => {
-                                return (
-                                    <option value={teacher.name}>{teacher.name}</option>
-                                );
-                            })}
-                    </select>
-                </label>}
-                {this.state.objType === "student" && <label>
-                    <br />Enrolled?
+                </div>
+                <div>
+                    {this.state.objType === "student" && <label>
+                        <br />Enrolled?
                     <select value={this.state.selection.enrolled ? "yes" : "no"} onChange={this.handleEnrolledChange} >
-                        {/* <option value=""> -- </option> */}
-                        <option value="yes">yes</option>
-                        <option value="no">no</option>
-                    </select>
-                </label>}
-                {(this.state.objType === "student" || this.state.objType === "teacher")
-                    && <label>
-                        <br />Birthday
-                    <input value={this.state.selection.birthday} onChange={this.handleBirthdayChange} />
+                            {/* <option value=""> -- </option> */}
+                            <option value="yes">yes</option>
+                            <option value="no">no</option>
+                        </select>
                     </label>}
-                {this.state.objType !== "none" && <label>
-                    <button onClick={this.handleSubmit}>Submit</button>
-                </label>}
+                </div>
+                <div>
+                    {(this.state.objType === "student" || this.state.objType === "teacher")
+                        && <label>
+                            <br />Birthday
+                    <input value={this.state.selection.birthday} onChange={this.handleBirthdayChange} />
+                        </label>}
+                </div>
+                <div>
+                    {this.state.objType !== "none" && <label>
+                        <button onClick={this.handleSubmit}>Edit {this.state.objType}</button>
+                    </label>}
+                </div>
 
             </div>
         </div>

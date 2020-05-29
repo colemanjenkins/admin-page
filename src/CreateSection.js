@@ -128,7 +128,7 @@ class CreateSection extends Component {
         let teacherCount = -1;
         return (
             <div style={{ margin: "15px", width: "250px" }}>
-                <h3>Create New</h3>
+                <h3>Create</h3>
                 <div>
                     <div className="inputSection">
                         <label> Type <br />
@@ -206,7 +206,7 @@ class CreateSection extends Component {
                     </div>
                     <div className="inputSection">
                         {this.state.objType !== "none" && <label>
-                            <button onClick={this.handleSubmit}>Submit</button>
+                            <button onClick={this.handleSubmit}>Create {this.state.objType}</button>
                         </label>}
                     </div>
                 </div>

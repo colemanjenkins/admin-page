@@ -5,6 +5,7 @@ import ListDisplay from './ListDisplay';
 import CreateSection from './CreateSection';
 import EditSection from './EditSection';
 import Header from './Header';
+import DeleteSection from './DeleteSection';
 import "bootswatch/dist/lux/bootstrap.min.css";
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
       teachers: [],
       admin: [],
       classes: [],
-      editMode: false,
+      editMode: true,           //change
     };
   }
 
@@ -61,9 +62,13 @@ class App extends Component {
             <ListDisplay obj={this.state.admin} title="Admin" />
           </div>
           <div className="editContents" style={{ flex: flexVal }}>
-            {this.state.editMode && <CreateSection homerooms={this.state.classes}
-              teachers={this.state.teachers} />}
-            {this.state.editMode && <EditSection />}
+            {this.state.editMode &&
+              <CreateSection homerooms={this.state.classes}
+                teachers={this.state.teachers} />}
+            {this.state.editMode &&
+              <EditSection />}
+            {this.state.editMode &&
+              <DeleteSection />}
           </div>
         </div>
       </div>

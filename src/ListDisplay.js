@@ -39,11 +39,16 @@ class ListDisplay extends Component {
                                         display = property ? "yes" : "no";
                                     } else if (childrenKeys[localCt] === "homeroom" && homerooms !== null && homerooms !== undefined) {
                                         // console.log(homerooms);
-                                        display = homerooms[property].name;
+                                        if (homerooms[property] !== null && homerooms[property] !== undefined)
+                                            display = homerooms[property].name;
+                                        else
+                                            display = "deleted class";
                                     }
                                     else if (childrenKeys[localCt] === "teacher" && teachers !== null && teachers !== undefined) {
-                                        // console.log(teachers);
-                                        display = teachers[property].name;
+                                        if (teachers[property] !== null && teachers[property] !== undefined)
+                                            display = teachers[property].name;
+                                        else
+                                            display = "deleted teacher";
                                     }
                                     return (
                                         <div style={{ textAlign: "left" }}><b>{childrenKeys[localCt].charAt(0).toUpperCase() + childrenKeys[localCt].slice(1)}</b>: {display}</div>
