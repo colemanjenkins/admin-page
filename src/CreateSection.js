@@ -32,7 +32,7 @@ class CreateSection extends Component {
                 homeroom: data.homeroom,
                 birthday: data.birthday,
                 teacher: data.teacher,
-                enrolled: data.enrolled === "yes" ? true : false
+                enrolled: data.enrolled
             })
         } else if (data.objType === "teacher") { //teacher
             const teacherRef = rootRef.child("teachers");
@@ -110,7 +110,7 @@ class CreateSection extends Component {
 
     handleEnrolledChange = (event) => {
         this.setState({
-            enrolled: event.target.value
+            enrolled: event.target.value === "yes" ? true : false
         })
     }
 

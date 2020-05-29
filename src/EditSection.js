@@ -127,7 +127,7 @@ class EditSection extends Component {
         const newVal = event.target.value;
         this.setState(prevState => {
             let prev = prevState.selection;
-            prev.enrolled = newVal;
+            prev.enrolled = newVal === "yes" ? true : false;
             return {
                 selection: prev
             }
