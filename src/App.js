@@ -17,7 +17,7 @@ class App extends Component {
       teachers: [],
       admin: [],
       classes: [],
-      editMode: true,           //change
+      editMode: false,           //change
     };
   }
 
