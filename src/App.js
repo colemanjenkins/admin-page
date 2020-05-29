@@ -58,7 +58,7 @@ class App extends Component {
             <ListDisplay obj={this.state.students} title="Students"
               homerooms={this.state.classes} teachers={this.state.teachers} />
             <ListDisplay obj={this.state.teachers} title="Teachers"
-              homerooms={this.state.homerooms} />
+              homerooms={this.state.classes} />
             <ListDisplay obj={this.state.admin} title="Admin" />
           </div>
           <div className="editContents" style={{ flex: flexVal }}>

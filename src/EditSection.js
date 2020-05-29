@@ -192,6 +192,15 @@ class EditSection extends Component {
         let keyArr;
         if (this.state[selectType] !== null && this.state[selectType] !== undefined)
             keyArr = Object.keys(this.state[selectType]);
+        let homeroomKeys = []//Object.keys(this.state.classes);
+        let teacherKeys = []//Object.keys(this.state.teachers);
+        if (this.state.classes !== null)
+            homeroomKeys = Object.keys(this.state.classes);
+        if (this.state.teachers !== null)
+            teacherKeys = Object.keys(this.state.teachers);
+        console.log(this.state.classes);
+        let homeroomCount = -1;
+        let teacherCount = -1;
         return (<div style={{ margin: "15px", width: "250px" }}>
             <h3>Edit</h3>
             <Form>
@@ -241,8 +250,9 @@ class EditSection extends Component {
                                 <option value=""> -- </option>
                                 {(this.state.classes !== null && this.state.classes !== undefined) &&
                                     Object.values(this.state.classes).map(homeroom => {
+                                        homeroomCount++;
                                         return (
-                                            <option value={homeroom.name}>{homeroom.name}</option>
+                                            <option value={homeroomKeys[homeroomCount]}>{homeroom.name}</option>
                                         );
                                     })}
                             </select>
@@ -255,8 +265,9 @@ class EditSection extends Component {
                             <option value=""> -- </option>
                             {(this.state.teachers !== null && this.state.teachers !== undefined) &&
                                 Object.values(this.state.teachers).map(teacher => {
+                                    teacherCount++;
                                     return (
-                                        <option value={teacher.name}>{teacher.name}</option>
+                                        <option value={teacherKeys[teacherCount]}>{teacher.name}</option>
                                     );
                                 })}
                         </select>
