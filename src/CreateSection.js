@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
-// import { Formik } from 'formik';
-// import * as yup from 'yup';
-// import Form from 'react-bootstrap/Form';
 
 import './CreateSection.css'
 

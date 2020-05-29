@@ -16,6 +16,7 @@ class Header extends Component {
             editMode,
             editPage
         } = this.props;
+
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                 <a className="navbar-brand" href="#" style={{ textAlign: "center" }}>Jefferson Elementary School</a>

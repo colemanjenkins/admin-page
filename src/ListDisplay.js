@@ -14,7 +14,7 @@ class ListDisplay extends Component {
         let contents;
         let ct = -1;
         let keys;
-        if (obj !== undefined && obj !== null) {
+        if (obj !== undefined && obj !== null && obj !== "") {
             keys = Object.keys(obj);
             contents = Object.values(obj).length !== 0 && Object.values(obj).map(object => {
                 ct++;
