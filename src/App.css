@@ -2,10 +2,19 @@
   text-align: center;
 }
 
-.contents {
+.peopleContents {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.editContents {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
 
+.page-contents {
+  display: flex;
 }

@@ -19,7 +19,7 @@ class EditSection extends Component {
                 homeroom: "",
                 birthday: "",
                 teacher: "",
-                enrolled: ""
+                enrolled: true,
             }
         }
     }
@@ -148,7 +148,7 @@ class EditSection extends Component {
                     homeroom: "",
                     birthday: "",
                     teacher: "",
-                    enrolled: ""
+                    enrolled: true
                 }
             }
         });

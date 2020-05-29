@@ -18,7 +18,7 @@ class CreateSection extends Component {
             homeroom: "",
             birthday: "",
             teacher: "",
-            enrolled: ""
+            enrolled: true
         }
     }
 
@@ -69,7 +69,7 @@ class CreateSection extends Component {
                 homeroom: "",
                 birthday: "",
                 teacher: "",
-                enrolled: ""
+                enrolled: true
             }
         });
         this.updateData(st);
@@ -177,8 +177,8 @@ class CreateSection extends Component {
                 </label>}
                 {this.state.objType === "student" && <label>
                     <br />Enrolled?
-                    <select value={this.state.enrolled} onChange={this.handleEnrolledChange} >
-                        <option value=""> -- </option>
+                    <select value={this.state.enrolled ? "yes" : "no"} onChange={this.handleEnrolledChange} >
+                        {/* <option value=""> -- </option> */}
                         <option value="yes">yes</option>
                         <option value="no">no</option>
                     </select>

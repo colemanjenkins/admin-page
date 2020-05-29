@@ -16,6 +16,7 @@ class App extends Component {
       teachers: [],
       admin: [],
       classes: [],
+      editMode: false,
     };
   }
 
@@ -31,19 +32,41 @@ class App extends Component {
     });
   }
 
+  editPage = (edit) => {
+    this.setState({
+      editMode: edit
+    })
+  }
+
   render() {
+    let flexVal = 0;
+    let justifyVal = "center"
+    if (this.state.editMode) {
+      flexVal = 1;
+      justifyVal = "flex-start";
+    }
     return (
       <div className="App">
-        <h1>Thomas Jefferson Elementary School</h1>
-        <div className="contents">
-          <ListDisplay obj={this.state.students} title="Students"
-            homerooms={this.state.classes} teachers={this.state.teachers} />
-          <ListDisplay obj={this.state.teachers} title="Teachers"
-            homerooms={this.state.homerooms} />
-          <ListDisplay obj={this.state.admin} title="Admin" />
-          <CreateSection homerooms={this.state.classes}
-            teachers={this.state.teachers} />
-          <EditSection />
+        <div className="header">
+          <h1>Thomas Jefferson Elementary School</h1>
+          {!this.state.editMode &&
+            <button onClick={() => this.editPage(true)}>Edit Page</button>}
+          {this.state.editMode &&
+            <button onClick={() => this.editPage(false)}>View Mode</button>}
+        </div>
+        <div className="page-contents">
+          <div className="peopleContents" style={{ flex: 1, justifyContent: justifyVal }}>
+            <ListDisplay obj={this.state.students} title="Students"
+              homerooms={this.state.classes} teachers={this.state.teachers} />
+            <ListDisplay obj={this.state.teachers} title="Teachers"
+              homerooms={this.state.homerooms} />
+            <ListDisplay obj={this.state.admin} title="Admin" />
+          </div>
+          <div className="editContents" style={{ flex: flexVal }}>
+            {this.state.editMode && <CreateSection homerooms={this.state.classes}
+              teachers={this.state.teachers} />}
+            {this.state.editMode && <EditSection />}
+          </div>
         </div>
       </div>
     );
