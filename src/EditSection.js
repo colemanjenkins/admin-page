@@ -257,7 +257,7 @@ class EditSection extends Component {
                 {this.state.objType === "student" && <label>
                     <br />Enrolled?
                     <select value={this.state.selection.enrolled ? "yes" : "no"} onChange={this.handleEnrolledChange} >
-                        <option value=""> -- </option>
+                        {/* <option value=""> -- </option> */}
                         <option value="yes">yes</option>
                         <option value="no">no</option>
                     </select>

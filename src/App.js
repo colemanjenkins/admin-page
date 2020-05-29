@@ -4,8 +4,8 @@ import * as firebase from 'firebase';
 import ListDisplay from './ListDisplay';
 import CreateSection from './CreateSection';
 import EditSection from './EditSection';
-
-// import "bootswatch/dist/yeti/bootstrap.min.css";
+import Header from './Header';
+import "bootswatch/dist/lux/bootstrap.min.css";
 
 class App extends Component {
 
@@ -48,11 +48,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header">
-          <h1>Thomas Jefferson Elementary School</h1>
-          {!this.state.editMode &&
-            <button onClick={() => this.editPage(true)}>Edit Page</button>}
-          {this.state.editMode &&
-            <button onClick={() => this.editPage(false)}>View Mode</button>}
+          <Header editMode={this.state.editMode} editPage={this.editPage} />
+          {/* <h1>Thomas Jefferson Elementary School</h1> */}
+
         </div>
         <div className="page-contents">
           <div className="peopleContents" style={{ flex: 1, justifyContent: justifyVal }}>
