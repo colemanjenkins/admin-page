@@ -3,4 +3,4 @@ Hosted here https://elementaryadminpage.netlify.app/
 
 ## Current development
 
-I can add students (not yet anything else, soon to be done) and it will add them to the firebase database. Currently there is no deletion feature and no login, just displays all the data.
+This was displays the admin page for Jafferson Elementary School and was make for Launch. It uses Firebase for the backend to store people and updates live. 
